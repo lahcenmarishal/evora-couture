@@ -36,7 +36,14 @@ export function Header() {
   const [mobileOpenSub, setMobileOpenSub] = useState<string | null>(null);
   const [trackingOpen, setTrackingOpen] = useState(false);
   const { getTotalItems, openCart } = useCart();
+  const { user, isAdmin } = useAuth();
+  const navigate = useNavigate();
   const totalItems = getTotalItems();
+
+  const handleAccountClick = () => {
+    if (user && isAdmin) navigate('/admin');
+    else navigate('/admin/login');
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10">
