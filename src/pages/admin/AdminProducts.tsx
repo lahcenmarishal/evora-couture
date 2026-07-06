@@ -8,7 +8,9 @@ import {
   Trash2,
   Package,
   Layers,
+  Images,
 } from 'lucide-react';
+
 import { supabase } from '@/integrations/supabase/client';
 import AdminLayout from '@/components/admin/AdminLayout';
 import ProductVariantsManager from '@/components/admin/ProductVariantsManager';
