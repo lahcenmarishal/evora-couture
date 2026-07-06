@@ -533,6 +533,50 @@ export default function AdminProducts() {
           onOpenChange={setVariantsDialogOpen}
         />
       )}
+
+      {/* Gallery Manager */}
+      <Dialog open={galleryDialogOpen} onOpenChange={setGalleryDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              Galerie — {selectedProduct?.name}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <ProductImageUploader
+              images={galleryImages}
+              onImagesChange={setGalleryImages}
+              productSlug={selectedProduct?.slug || 'product'}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setGalleryDialogOpen(false)}>
+              Annuler
+            </Button>
+            <Button
+              disabled={savingGallery}
+              onClick={async () => {
+                if (!selectedProduct) return;
+                setSavingGallery(true);
+                const { error } = await supabase
+                  .from('products')
+                  .update({ images: galleryImages })
+                  .eq('id', selectedProduct.id);
+                setSavingGallery(false);
+                if (error) {
+                  toast({ title: 'Erreur', description: error.message, variant: 'destructive' });
+                  return;
+                }
+                toast({ title: 'Galerie mise à jour' });
+                setGalleryDialogOpen(false);
+                fetchProducts();
+              }}
+            >
+              {savingGallery ? 'Enregistrement...' : 'Enregistrer'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </AdminLayout>
   );
 }
