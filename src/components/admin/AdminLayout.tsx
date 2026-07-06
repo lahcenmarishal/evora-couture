@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   Package,
   ShoppingCart,
+  Truck,
   Tag,
   Settings,
   LogOut,
