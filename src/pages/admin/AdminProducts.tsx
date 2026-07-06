@@ -66,6 +66,9 @@ export default function AdminProducts() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [variantsDialogOpen, setVariantsDialogOpen] = useState(false);
+  const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [savingGallery, setSavingGallery] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [formData, setFormData] = useState<Partial<ProductInsert>>({
     name: '',
