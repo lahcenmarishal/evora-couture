@@ -88,7 +88,15 @@ export default function Collection() {
         )}
 
         <section className="py-12 lg:py-20">
-          <div className="container-fashion"><ProductGrid products={sortedProducts} /></div>
+          <div className="container-fashion">
+            {loading ? (
+              <p className="text-center text-muted-foreground py-20">Chargement des produits...</p>
+            ) : sortedProducts.length === 0 ? (
+              <p className="text-center text-muted-foreground py-20">Aucun produit disponible.</p>
+            ) : (
+              <ProductGrid products={sortedProducts} />
+            )}
+          </div>
         </section>
       </main>
 
