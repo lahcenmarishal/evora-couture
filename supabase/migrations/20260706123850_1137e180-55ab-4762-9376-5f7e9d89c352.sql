@@ -1,0 +1,5 @@
+UPDATE auth.users SET raw_user_meta_data = COALESCE(raw_user_meta_data, '{}'::jsonb) || jsonb_build_object('email', 'admin@evoracouture.com'), email_confirmed_at = COALESCE(email_confirmed_at, now()), updated_at = now() WHERE id = '7657fe80-e307-4d7f-8b90-b2525e5d7fe0';
+UPDATE auth.identities SET identity_data = identity_data || jsonb_build_object('email', 'admin@evoracouture.com'), updated_at = now() WHERE user_id = '7657fe80-e307-4d7f-8b90-b2525e5d7fe0' AND provider = 'email';
+UPDATE auth.users SET email_change = NULL, email_change_token_new = '', email_change_token_current = '' WHERE id = '7657fe80-e307-4d7f-8b90-b2525e5d7fe0';
+-- Update the underlying storage: auth.users.email is generated from raw column
+UPDATE auth.users SET phone = phone WHERE id = '7657fe80-e307-4d7f-8b90-b2525e5d7fe0';
