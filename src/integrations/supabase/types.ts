@@ -208,6 +208,7 @@ export type Database = {
           description: string | null
           id: string
           images: string[] | null
+          is_bestseller: boolean | null
           is_featured: boolean | null
           is_new: boolean | null
           name: string
@@ -222,6 +223,7 @@ export type Database = {
           description?: string | null
           id?: string
           images?: string[] | null
+          is_bestseller?: boolean | null
           is_featured?: boolean | null
           is_new?: boolean | null
           name: string
@@ -236,6 +238,7 @@ export type Database = {
           description?: string | null
           id?: string
           images?: string[] | null
+          is_bestseller?: boolean | null
           is_featured?: boolean | null
           is_new?: boolean | null
           name?: string
