@@ -124,6 +124,14 @@ export function Header() {
               <Package className="w-5 h-5" />
             </button>
             <button
+              onClick={handleAccountClick}
+              className="p-2 hover:text-white/80 transition-colors"
+              aria-label="Compte"
+              title={user && isAdmin ? 'Admin' : 'Connexion'}
+            >
+              <User className="w-5 h-5" />
+            </button>
+            <button
               onClick={openCart}
               className="p-2 relative hover:text-white/80 transition-colors"
               aria-label="Panier"
