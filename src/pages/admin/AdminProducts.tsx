@@ -372,6 +372,14 @@ export default function AdminProducts() {
                           </DropdownMenuItem>
                           <DropdownMenuItem onClick={() => {
                             setSelectedProduct(product);
+                            setGalleryImages(product.images || []);
+                            setGalleryDialogOpen(true);
+                          }}>
+                            <Images className="h-4 w-4 mr-2" />
+                            Galerie d'images
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => {
+                            setSelectedProduct(product);
                             setVariantsDialogOpen(true);
                           }}>
                             <Layers className="h-4 w-4 mr-2" />
