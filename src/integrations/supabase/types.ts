@@ -92,7 +92,7 @@ export type Database = {
           id: string
           items: Json
           notes: string | null
-          order_number: string
+          order_number: string | null
           payment_method: string
           promo_code: string | null
           shipped_at: string | null
@@ -119,7 +119,7 @@ export type Database = {
           id?: string
           items: Json
           notes?: string | null
-          order_number: string
+          order_number?: string | null
           payment_method: string
           promo_code?: string | null
           shipped_at?: string | null
@@ -146,7 +146,7 @@ export type Database = {
           id?: string
           items?: Json
           notes?: string | null
-          order_number?: string
+          order_number?: string | null
           payment_method?: string
           promo_code?: string | null
           shipped_at?: string | null

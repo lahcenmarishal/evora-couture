@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { TrackingManager } from '@/components/admin/TrackingManager';
+import { ManualTrackingDialog } from '@/components/admin/ManualTrackingDialog';
 import { useToast } from '@/hooks/use-toast';
 
 const STATUS_LABELS: Record<string, string> = {
@@ -101,9 +102,10 @@ export default function AdminTracking() {
               Gérez le suivi et les livraisons de vos commandes
             </p>
           </div>
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center flex-wrap">
             <Badge variant="outline" className="gap-1"><Package className="w-3 h-3" /> {orders.length} commandes</Badge>
             <Badge variant="default" className="gap-1"><Truck className="w-3 h-3" /> {orders.filter(o => ['en_transport','en_livraison','pris_en_charge'].includes(o.tracking_status)).length} en cours</Badge>
+            <ManualTrackingDialog onCreated={load} />
           </div>
         </div>
 
