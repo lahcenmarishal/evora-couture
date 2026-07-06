@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { TrackingManager } from '@/components/admin/TrackingManager';
+import { ManualTrackingDialog } from '@/components/admin/ManualTrackingDialog';
 import { useToast } from '@/hooks/use-toast';
 
 const STATUS_LABELS: Record<string, string> = {
