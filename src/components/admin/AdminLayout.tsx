@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   Package,
   ShoppingCart,
+  Truck,
   Tag,
   Settings,
   LogOut,
@@ -24,6 +25,7 @@ const navItems = [
   { path: '/admin', label: 'Dashboard', icon: LayoutDashboard },
   { path: '/admin/produits', label: 'Produits', icon: Package },
   { path: '/admin/commandes', label: 'Commandes', icon: ShoppingCart },
+  { path: '/admin/suivi', label: 'Suivi colis', icon: Truck },
   { path: '/admin/promos', label: 'Codes Promo', icon: Tag },
   { path: '/admin/parametres', label: 'Paramètres', icon: Settings },
 ];
