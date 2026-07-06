@@ -17,6 +17,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
 import AdminOrders from "./pages/admin/AdminOrders";
+import AdminTracking from "./pages/admin/AdminTracking";
 import AdminPromos from "./pages/admin/AdminPromos";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminProtectedRoute from "./components/admin/AdminProtectedRoute";
