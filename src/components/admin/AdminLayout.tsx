@@ -12,6 +12,7 @@ import {
   Menu,
   X,
   ChevronRight,
+  ArrowLeft,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/useAuth';
@@ -140,7 +141,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       {/* Main Content */}
       <main className="lg:pl-64 pt-16 lg:pt-0 min-h-screen">
         {/* Breadcrumb Header */}
-        <div className="h-16 bg-background border-b border-border flex items-center px-6">
+        <div className="h-16 bg-background border-b border-border flex items-center justify-between px-6">
           <div className="flex items-center gap-2 text-sm">
             <Link to="/admin" className="text-muted-foreground hover:text-foreground transition-colors">
               Admin
@@ -158,6 +159,13 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
               </>
             )}
           </div>
+          <Link
+            to="/"
+            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Retour au site</span>
+          </Link>
         </div>
 
         {/* Page Content */}

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingBag, Search, ChevronDown, Package } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, ShoppingBag, Search, ChevronDown, Package, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
+import { useAuth } from '@/hooks/useAuth';
 import logoEvora from '@/assets/logo-evora.png';
 import { TrackingDialog } from '@/components/tracking/TrackingDialog';
 
@@ -35,7 +36,14 @@ export function Header() {
   const [mobileOpenSub, setMobileOpenSub] = useState<string | null>(null);
   const [trackingOpen, setTrackingOpen] = useState(false);
   const { getTotalItems, openCart } = useCart();
+  const { user, isAdmin } = useAuth();
+  const navigate = useNavigate();
   const totalItems = getTotalItems();
+
+  const handleAccountClick = () => {
+    if (user && isAdmin) navigate('/admin');
+    else navigate('/admin/login');
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-white/10">
@@ -114,6 +122,14 @@ export function Header() {
               title="Suivi de colis"
             >
               <Package className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleAccountClick}
+              className="p-2 hover:text-white/80 transition-colors"
+              aria-label="Compte"
+              title={user && isAdmin ? 'Admin' : 'Connexion'}
+            >
+              <User className="w-5 h-5" />
             </button>
             <button
               onClick={openCart}
