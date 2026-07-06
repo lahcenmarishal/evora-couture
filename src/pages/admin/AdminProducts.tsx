@@ -8,7 +8,9 @@ import {
   Trash2,
   Package,
   Layers,
+  Images,
 } from 'lucide-react';
+
 import { supabase } from '@/integrations/supabase/client';
 import AdminLayout from '@/components/admin/AdminLayout';
 import ProductVariantsManager from '@/components/admin/ProductVariantsManager';
@@ -64,6 +66,9 @@ export default function AdminProducts() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [variantsDialogOpen, setVariantsDialogOpen] = useState(false);
+  const [galleryDialogOpen, setGalleryDialogOpen] = useState(false);
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+  const [savingGallery, setSavingGallery] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [formData, setFormData] = useState<Partial<ProductInsert>>({
     name: '',
@@ -367,6 +372,14 @@ export default function AdminProducts() {
                           </DropdownMenuItem>
                           <DropdownMenuItem onClick={() => {
                             setSelectedProduct(product);
+                            setGalleryImages(product.images || []);
+                            setGalleryDialogOpen(true);
+                          }}>
+                            <Images className="h-4 w-4 mr-2" />
+                            Galerie d'images
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => {
+                            setSelectedProduct(product);
                             setVariantsDialogOpen(true);
                           }}>
                             <Layers className="h-4 w-4 mr-2" />
@@ -520,6 +533,50 @@ export default function AdminProducts() {
           onOpenChange={setVariantsDialogOpen}
         />
       )}
+
+      {/* Gallery Manager */}
+      <Dialog open={galleryDialogOpen} onOpenChange={setGalleryDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>
+              Galerie — {selectedProduct?.name}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="py-4">
+            <ProductImageUploader
+              images={galleryImages}
+              onImagesChange={setGalleryImages}
+              productSlug={selectedProduct?.slug || 'product'}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setGalleryDialogOpen(false)}>
+              Annuler
+            </Button>
+            <Button
+              disabled={savingGallery}
+              onClick={async () => {
+                if (!selectedProduct) return;
+                setSavingGallery(true);
+                const { error } = await supabase
+                  .from('products')
+                  .update({ images: galleryImages })
+                  .eq('id', selectedProduct.id);
+                setSavingGallery(false);
+                if (error) {
+                  toast({ title: 'Erreur', description: error.message, variant: 'destructive' });
+                  return;
+                }
+                toast({ title: 'Galerie mise à jour' });
+                setGalleryDialogOpen(false);
+                fetchProducts();
+              }}
+            >
+              {savingGallery ? 'Enregistrement...' : 'Enregistrer'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </AdminLayout>
   );
 }
