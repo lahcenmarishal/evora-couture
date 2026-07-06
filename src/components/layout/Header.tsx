@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingBag, Search, ChevronDown, Package } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, ShoppingBag, Search, ChevronDown, Package, User } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/lib/cart';
+import { useAuth } from '@/hooks/useAuth';
 import logoEvora from '@/assets/logo-evora.png';
 import { TrackingDialog } from '@/components/tracking/TrackingDialog';
 
