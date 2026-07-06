@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EVORA COUTURE - Moroccan Caftans | Modern Heritage Design System */
+
+@layer base {
+  :root {
+    /* Core palette - Warm neutrals inspired by Moroccan riads */
+    --background: 40 25% 98%;
+    --foreground: 220 15% 12%;
+
+    --card: 40 20% 99%;
+    --card-foreground: 220 15% 12%;
+
+    --popover: 40 20% 99%;
+    --popover-foreground: 220 15% 12%;
+
+    /* Primary - Deep navy (bleu nuit marocain) */
+    --primary: 220 40% 18%;
+    --primary-foreground: 40 25% 98%;
+
+    /* Secondary - Warm sand */
+    --secondary: 38 30% 95%;
+    --secondary-foreground: 220 15% 12%;
+
+    /* Muted - Soft ecru */
+    --muted: 40 20% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent - Subtle gold */
+    --accent: 42 45% 88%;
+    --accent-foreground: 220 15% 12%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 220 40% 18%;
+
+    --radius: 0px;
+
+    /* Custom tokens - Moroccan luxury */
+    --hero-overlay: 220 20% 8%;
+    --product-hover: 40 25% 97%;
+    --sale: 0 72% 51%;
+    --success: 142 76% 36%;
+    --gold: 42 60% 55%;
+    --sand: 38 35% 90%;
+    --ecru: 45 30% 96%;
+    --navy: 220 40% 18%;
+
+    /* Shadows - Softer, more organic */
+    --shadow-soft: 0 4px 30px -8px hsl(220 15% 12% / 0.06);
+    --shadow-medium: 0 12px 40px -10px hsl(220 15% 12% / 0.1);
+    --shadow-editorial: 0 20px 60px -15px hsl(220 15% 12% / 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 40 25% 98%;
+    --sidebar-foreground: 220 15% 12%;
+    --sidebar-primary: 220 40% 18%;
+    --sidebar-primary-foreground: 40 25% 98%;
+    --sidebar-accent: 38 30% 95%;
+    --sidebar-accent-foreground: 220 15% 12%;
+    --sidebar-border: 40 15% 88%;
+    --sidebar-ring: 220 40% 18%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 220 15% 10%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 220 15% 10%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 40 20% 95%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 12% 16%;
+    --secondary-foreground: 40 20% 95%;
+
+    --muted: 220 12% 16%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 220 12% 18%;
+    --accent-foreground: 40 20% 95%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 40 20% 95%;
+
+    --border: 220 12% 20%;
+    --input: 220 12% 20%;
+    --ring: 40 20% 95%;
+
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 40 20% 95%;
+    --sidebar-primary-foreground: 220 15% 8%;
+    --sidebar-accent: 220 12% 16%;
+    --sidebar-accent-foreground: 40 20% 95%;
+    --sidebar-border: 220 12% 20%;
+    --sidebar-ring: 40 20% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Product card hover effect - refined */
+  .product-card {
+    @apply transition-all duration-700 ease-out;
+  }
+
+  .product-card:hover {
+    @apply -translate-y-1;
+  }
+
+  .product-card:hover .product-image {
+    @apply scale-105;
+  }
+
+  /* Editorial image hover */
+  .editorial-image {
+    @apply transition-transform duration-1000 ease-out;
+  }
+
+  .group:hover .editorial-image {
+    @apply scale-105;
+  }
+
+  /* Text reveal animation */
+  .text-reveal {
+    @apply relative overflow-hidden;
+  }
+
+  .text-reveal::after {
+    content: '';
+    @apply absolute inset-0 bg-foreground transform translate-x-full;
+    animation: reveal 0.8s ease-out forwards;
+  }
+
+  @keyframes reveal {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Underline animation for links - refined */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-current transition-all duration-500 ease-out;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Filter button styles */
+  .filter-chip {
+    @apply px-5 py-2.5 text-sm border border-border transition-all duration-300;
+  }
+
+  .filter-chip:hover {
+    @apply bg-primary text-primary-foreground border-primary;
+  }
+
+  .filter-chip.active {
+    @apply bg-primary text-primary-foreground border-primary;
+  }
+
+  /* Quantity selector */
+  .qty-btn {
+    @apply w-12 h-12 flex items-center justify-center border border-border transition-colors duration-300;
+  }
+
+  .qty-btn:hover {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Premium button style */
+  .btn-premium {
+    @apply inline-flex items-center gap-3 px-10 py-4 bg-primary text-primary-foreground text-caption 
+           transition-all duration-500 hover:bg-primary/90 hover:gap-4;
+  }
+
+  /* Editorial section styling */
+  .section-editorial {
+    @apply py-24 lg:py-40;
+  }
+}
+
+@layer utilities {
+  /* Container with max-width - more spacious */
+  .container-fashion {
+    @apply max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Aspect ratios for fashion imagery */
+  .aspect-fashion {
+    aspect-ratio: 3/4;
+  }
+
+  .aspect-hero {
+    aspect-ratio: 16/9;
+  }
+
+  .aspect-editorial {
+    aspect-ratio: 4/5;
+  }
+
+  /* Text styles - refined typography */
+  .text-display {
+    @apply font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.9] font-light;
+  }
+
+  .text-title {
+    @apply font-display text-3xl sm:text-4xl md:text-5xl tracking-tight font-light;
+  }
+
+  .text-subtitle {
+    @apply font-display text-xl sm:text-2xl md:text-3xl tracking-tight font-light;
+  }
+
+  .text-body {
+    @apply font-sans text-sm sm:text-base leading-relaxed tracking-wide;
+  }
+
+  .text-caption {
+    @apply font-sans text-[11px] sm:text-xs uppercase tracking-[0.2em] font-medium;
+  }
+
+  .text-editorial {
+    @apply font-display text-lg sm:text-xl leading-relaxed font-light italic;
+  }
+
+  /* Animation delays */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+
+  /* Moroccan-inspired decorative elements */
+  .border-ornate {
+    @apply border border-border/50;
+  }
+}
