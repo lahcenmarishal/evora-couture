@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CartDrawer } from '@/components/layout/CartDrawer';
 import { ProductGrid } from '@/components/product/ProductGrid';
-import { products } from '@/lib/products';
+import { useProducts } from '@/hooks/useProducts';
 
 const sizes = ['XS', 'S', 'M', 'L', 'XL'];
 const colors = ['Écru', 'Sable', 'Beige', 'Ivoire', 'Bleu Nuit'];
@@ -20,6 +20,7 @@ export default function Collection() {
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState('new');
+  const { products, loading } = useProducts();
 
   const toggleSize = (size: string) => setSelectedSizes(prev => prev.includes(size) ? prev.filter(s => s !== size) : [...prev, size]);
   const toggleColor = (color: string) => setSelectedColors(prev => prev.includes(color) ? prev.filter(c => c !== color) : [...prev, color]);
