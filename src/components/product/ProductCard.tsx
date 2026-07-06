@@ -58,10 +58,10 @@ export function ProductCard({ product, index = 0 }: ProductCardProps) {
             {product.name}
           </h3>
           <div className="flex items-center gap-2">
-            <span className="text-sm">{product.price.toFixed(2)} €</span>
+            <span className="text-sm">{product.price.toLocaleString('fr-MA')} DH</span>
             {hasDiscount && (
               <span className="text-sm text-muted-foreground line-through">
-                {product.originalPrice!.toFixed(2)} €
+                {product.originalPrice!.toLocaleString('fr-MA')} DH
               </span>
             )}
           </div>
