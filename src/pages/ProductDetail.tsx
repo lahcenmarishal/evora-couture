@@ -358,13 +358,26 @@ export default function ProductDetail() {
 
               {/* Actions */}
               <div className="space-y-4 mb-10">
-                <button 
-                  onClick={handleAddToCart} 
-                  disabled={!inStock} 
-                  className="w-full py-4 bg-foreground text-background text-caption hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {inStock ? 'Ajouter au panier' : 'Rupture de stock'}
-                </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <button 
+                    onClick={handleAddToCart} 
+                    disabled={!inStock} 
+                    className="w-full py-4 bg-foreground text-background text-caption hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {inStock ? 'Ajouter au panier' : 'Rupture de stock'}
+                  </button>
+                  <a
+                    href={`https://wa.me/212600000000?text=${encodeURIComponent(
+                      `Bonjour EVORA COUTURE, je souhaite commander :\n\n• ${product.name}${selectedColor ? `\n• Couleur : ${selectedColor}` : ''}${selectedSize ? `\n• Taille : ${selectedSize}` : ''}\n• Quantité : ${quantity}\n• Prix : ${(product.price * quantity).toFixed(2)} DH\n\nLien : ${typeof window !== 'undefined' ? window.location.href : ''}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-4 bg-[#25D366] text-white text-caption hover:bg-[#1ebe57] transition-colors flex items-center justify-center gap-2"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    Commander via WhatsApp
+                  </a>
+                </div>
                 <div className="flex gap-4">
                   <button className="flex-1 py-4 border border-border text-caption hover:bg-muted transition-colors flex items-center justify-center gap-2">
                     <Heart className="w-4 h-4" />
