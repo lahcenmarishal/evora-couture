@@ -13,6 +13,8 @@ import FAQ from "./pages/FAQ";
 import Livraison from "./pages/Livraison";
 import GuideTailles from "./pages/GuideTailles";
 import Contact from "./pages/Contact";
+import Confidentialite from "./pages/Confidentialite";
+import MentionsLegales from "./pages/MentionsLegales";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
@@ -45,6 +47,8 @@ const App = () => (
             <Route path="/livraison" element={<Livraison />} />
             <Route path="/guide-tailles" element={<GuideTailles />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/confidentialite" element={<Confidentialite />} />
+            <Route path="/mentions-legales" element={<MentionsLegales />} />
             
             {/* Admin Routes */}
             <Route path="/admin/login" element={<AdminLogin />} />
