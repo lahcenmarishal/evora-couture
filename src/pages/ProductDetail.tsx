@@ -357,19 +357,42 @@ export default function ProductDetail() {
               </div>
 
               {/* Actions */}
+              {(() => {
+                const needsSize = sizes.length > 0 && !selectedSize;
+                const needsColor = colors.length > 0 && !selectedColor;
+                const outOfStock = !needsSize && !needsColor && !inStock;
+                const cartLabel = outOfStock
+                  ? 'Rupture de stock'
+                  : needsSize
+                    ? 'Sélectionner une taille'
+                    : needsColor
+                      ? 'Sélectionner une couleur'
+                      : 'Ajouter au panier';
+                const total = (product.price * quantity).toFixed(2);
+                const waLines = [
+                  `Bonjour EVORA COUTURE, je souhaite commander :`,
+                  ``,
+                  `• Produit : ${product.name}`,
+                  selectedColor ? `• Couleur : ${selectedColor}` : `• Couleur : à préciser`,
+                  selectedSize ? `• Taille : ${selectedSize}` : `• Taille : à préciser`,
+                  `• Quantité : ${quantity}`,
+                  `• Prix unitaire : ${product.price.toFixed(2)} DH`,
+                  `• Total : ${total} DH`,
+                  ``,
+                  `Lien produit : ${typeof window !== 'undefined' ? window.location.href : ''}`,
+                ].join('\n');
+                return (
               <div className="space-y-4 mb-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <button 
-                    onClick={handleAddToCart} 
-                    disabled={!inStock} 
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={outOfStock}
                     className="w-full py-4 bg-foreground text-background text-caption hover:bg-foreground/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {inStock ? 'Ajouter au panier' : 'Rupture de stock'}
+                    {cartLabel}
                   </button>
                   <a
-                    href={`https://wa.me/212600000000?text=${encodeURIComponent(
-                      `Bonjour EVORA COUTURE, je souhaite commander :\n\n• ${product.name}${selectedColor ? `\n• Couleur : ${selectedColor}` : ''}${selectedSize ? `\n• Taille : ${selectedSize}` : ''}\n• Quantité : ${quantity}\n• Prix : ${(product.price * quantity).toFixed(2)} DH\n\nLien : ${typeof window !== 'undefined' ? window.location.href : ''}`
-                    )}`}
+                    href={`https://wa.me/212600000000?text=${encodeURIComponent(waLines)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-4 bg-[#25D366] text-white text-caption hover:bg-[#1ebe57] transition-colors flex items-center justify-center gap-2"
@@ -389,6 +412,8 @@ export default function ProductDetail() {
                   </button>
                 </div>
               </div>
+                );
+              })()}
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4 py-6 border-t border-b border-border mb-8">
