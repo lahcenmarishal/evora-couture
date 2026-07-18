@@ -23,6 +23,7 @@ import AdminTracking from "./pages/admin/AdminTracking";
 import AdminPromos from "./pages/admin/AdminPromos";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminProtectedRoute from "./components/admin/AdminProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/collection" element={<Collection />} />
