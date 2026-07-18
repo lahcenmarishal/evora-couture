@@ -189,11 +189,6 @@ export default function ProductDetail() {
   const inStock = selectedVariant ? selectedVariant.stock > 0 : variants.length === 0;
 
   const handleAddToCart = () => {
-    if (sizes.length > 0 && !selectedSize) {
-      toast.error('Veuillez sélectionner une taille');
-      return;
-    }
-    
     const cartProduct = {
       id: product.id,
       name: product.name,
@@ -210,7 +205,7 @@ export default function ProductDetail() {
       })),
     };
     
-    addItem(cartProduct, selectedSize || 'Unique', selectedColor || 'Standard', quantity);
+    addItem(cartProduct, selectedSize || 'Non sélectionnée', selectedColor || 'Non sélectionnée', quantity);
     toast.success('Ajouté au panier');
   };
 
