@@ -189,11 +189,6 @@ export default function ProductDetail() {
   const inStock = selectedVariant ? selectedVariant.stock > 0 : variants.length === 0;
 
   const handleAddToCart = () => {
-    if (sizes.length > 0 && !selectedSize) {
-      toast.error('Veuillez sélectionner une taille');
-      return;
-    }
-    
     const cartProduct = {
       id: product.id,
       name: product.name,
@@ -210,7 +205,7 @@ export default function ProductDetail() {
       })),
     };
     
-    addItem(cartProduct, selectedSize || 'Unique', selectedColor || 'Standard', quantity);
+    addItem(cartProduct, selectedSize || 'Non sélectionnée', selectedColor || 'Non sélectionnée', quantity);
     toast.success('Ajouté au panier');
   };
 
@@ -360,14 +355,8 @@ export default function ProductDetail() {
               {(() => {
                 const needsSize = sizes.length > 0 && !selectedSize;
                 const needsColor = colors.length > 0 && !selectedColor;
-                const outOfStock = !needsSize && !needsColor && !inStock;
-                const cartLabel = outOfStock
-                  ? 'Rupture de stock'
-                  : needsSize
-                    ? 'Sélectionner une taille'
-                    : needsColor
-                      ? 'Sélectionner une couleur'
-                      : 'Ajouter au panier';
+                const outOfStock = selectedVariant ? selectedVariant.stock <= 0 : false;
+                const cartLabel = outOfStock ? 'Rupture de stock' : 'Ajouter au panier';
                 const total = (product.price * quantity).toFixed(2);
                 const waLines = [
                   `Bonjour EVORA COUTURE, je souhaite commander :`,
@@ -381,6 +370,13 @@ export default function ProductDetail() {
                   ``,
                   `Lien produit : ${typeof window !== 'undefined' ? window.location.href : ''}`,
                 ].join('\n');
+                const missingPieces = [
+                  needsSize ? 'la taille' : '',
+                  needsColor ? 'la couleur' : '',
+                ].filter(Boolean);
+                const missingLabel = missingPieces.length > 0
+                  ? `Veuillez sélectionner ${missingPieces.join(' et ')} pour finaliser votre commande.`
+                  : null;
                 return (
               <div className="space-y-4 mb-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -401,6 +397,11 @@ export default function ProductDetail() {
                     Commander via WhatsApp
                   </a>
                 </div>
+                {missingLabel && (
+                  <p className="text-xs text-muted-foreground text-center">
+                    {missingLabel}
+                  </p>
+                )}
                 <div className="flex gap-4">
                   <button className="flex-1 py-4 border border-border text-caption hover:bg-muted transition-colors flex items-center justify-center gap-2">
                     <Heart className="w-4 h-4" />
