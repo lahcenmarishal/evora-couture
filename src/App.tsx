@@ -13,6 +13,8 @@ import FAQ from "./pages/FAQ";
 import Livraison from "./pages/Livraison";
 import GuideTailles from "./pages/GuideTailles";
 import Contact from "./pages/Contact";
+import Confidentialite from "./pages/Confidentialite";
+import MentionsLegales from "./pages/MentionsLegales";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProducts from "./pages/admin/AdminProducts";
