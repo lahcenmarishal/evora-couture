@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Minus, Plus, Heart, Share2, ChevronLeft, Truck, Shield, RotateCcw } from 'lucide-react';
+import { Minus, Plus, Heart, Share2, ChevronLeft, Truck, Shield, RotateCcw, MessageCircle } from 'lucide-react';
 import { SizeGuide } from '@/components/product/SizeGuide';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
