@@ -412,6 +412,8 @@ export default function ProductDetail() {
                   </button>
                 </div>
               </div>
+                );
+              })()}
 
               {/* Features */}
               <div className="grid grid-cols-3 gap-4 py-6 border-t border-b border-border mb-8">
