@@ -37,8 +37,8 @@ Evora Couture propose une expérience shopping digitale permettant aux clients d
 ## Installation
 
 ```bash
-git clone https://github.com/lahcenmarishal/raza-style-shop.git
-cd raza-style-shop
+git clone https://github.com/lahcenmarishal/evora-couture.git
+cd evora-couture
 npm install
 npm run dev
 ```
